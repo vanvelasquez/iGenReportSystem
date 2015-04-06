@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/components/" >
+<h:head>
+<title></title>
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">
+
+    <ui:define name="metadata">
+	    <f:metadata>
+			<f:event listener="#{usuarioBean.clearUsuario}" type="preRenderView"></f:event>
+		</f:metadata>
+	</ui:define>
+
+
+<ui:define name="windowTitle">
+	i-Gen - Usuarios
+</ui:define>
+<ui:define name="secciones">
+	<ui:include src="/sections/usuarios/secciones.xhtml" />
+</ui:define>
+<ui:define name="content">
+
+	<div class="article"> 
+	  <h2><h:outputText value="Nuevo Usuario"/></h2>
+	  <h:outputText value="(*) Datos obligatorios" style="font-style: italic;"  />
+	<h:form >
+		<h:panelGroup>
+		
+		<h:panelGrid columns="3" width="100%">
+			<h:outputText id="labelNombre" value="Nombre" />
+			<h:inputText id="inputNombre" value="#{usuarioBean.usuario.nombreUsuario}"/>
+			<h:message for="inputNombre" style="color:red"/>			
+			
+			<h:outputText id="labelDireccion" value="Dirección" />
+			<h:inputText id="inputDireccion" value="#{usuarioBean.usuario.direccionUsuario}"/>
+			<h:message for="inputDireccion" style="color:red"/>	
+			
+			<h:outputText id="labelTelefono" value="Teléfono" />
+			<h:inputText id="inputTelefono" value="#{usuarioBean.usuario.telefonoUsuario}"/>
+			<h:message for="inputTelefono" style="color:red"/>			
+			
+			<h:outputText id="labelEmail" value="E-mail" />
+			<h:inputText id="inputEmail" value="#{usuarioBean.usuario.emailUsuario}"/>
+			<h:message for="inputEmail" style="color:red"/>	
+			
+			<h:outputText id="labelUsuario" value="(*) Usuario" />
+			<h:inputText id="inputUsuario" value="#{usuarioBean.usuario.usuario}" required="true" requiredMessage="Debe introducir el usuario"/>
+			<h:message for="inputUsuario" style="color:red"/>			
+			
+			<h:outputText id="labelPassword" value="(*) Password" />
+			<h:inputText id="inputPassword" value="#{usuarioBean.usuario.password}" required="true" requiredMessage="Debe introducir el password"><f:validateLength minimum="5"/></h:inputText>
+			<h:message for="inputPassword" style="color:red"/>
+			
+			<h:outputText id="labelRolUsuario" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rol Usuario" />
+ 			<comp:selectOneRolUsuario  value="#{usuarioBean.usuario.rolUsuario.rolUsuarioId}"></comp:selectOneRolUsuario> 
+			<h:message for="inputRolUsuario"></h:message>
+			<h:outputText />
+			<h:commandButton value="Agregar" action="#{usuarioBean.crear}" ></h:commandButton>
+			<h:outputText />
+		</h:panelGrid>
+		
+		</h:panelGroup>
+	</h:form>
+	</div>
+	
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

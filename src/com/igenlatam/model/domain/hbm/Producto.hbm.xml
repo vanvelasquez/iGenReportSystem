@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.igenlatam.model.domain.Producto" table="producto">
+        <id name="productoId" type="java.lang.Long">
+            <column name="producto_id" />
+            <generator class="increment" />
+        </id>
+        <property name="descripcionProducto" type="java.lang.String">
+            <column name="descripcion_producto" />
+        </property>
+        <property name="marca" type="java.lang.String">
+            <column name="marca" />
+        </property>
+        <property name="categoria" type="java.lang.String">
+            <column name="categoria" />
+        </property>
+        <property name="canal" type="java.lang.String">
+            <column name="canal" />
+        </property>
+        <property name="codigoInterno" type="java.lang.String">
+            <column name="codigo_interno" />
+        </property>
+        <property name="usuarioCreacion" type="java.lang.String">
+            <column name="usuario_creacion" />
+        </property>      
+          <property name="usuarioModificacion" type="java.lang.String">
+            <column name="usuario_modificacion" />
+        </property>   
+          <property name="fechaCreacion" type="java.util.Date">
+            <column name="fecha_creacion" />
+        </property>      
+          <property name="fechaModificacion" type="java.util.Date">
+            <column name="fecha_modificacion" />
+        </property> 
+    </class>
+</hibernate-mapping>

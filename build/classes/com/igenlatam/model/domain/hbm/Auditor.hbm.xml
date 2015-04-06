@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.igenlatam.model.domain.Auditor" table="auditor">
+        <id name="auditorId" type="java.lang.Long">
+            <column name="auditor_id" />
+            <generator class="increment" />
+        </id>
+
+        <many-to-one name="usuario" class="com.igenlatam.model.domain.Usuario" fetch="join" lazy="false" >
+            <column name="usuario_id" />
+        </many-to-one>
+        <many-to-one name="zona" class="com.igenlatam.model.domain.Zona" fetch="join" lazy="false" >
+            <column name="zona_id" />
+        </many-to-one>  
+
+        <property name="usuarioCreacion" type="java.lang.String">
+            <column name="usuario_creacion" />
+        </property>      
+          <property name="usuarioModificacion" type="java.lang.String">
+            <column name="usuario_modificacion" />
+        </property>   
+          <property name="fechaCreacion" type="java.util.Date">
+            <column name="fecha_creacion" />
+        </property>      
+          <property name="fechaModificacion" type="java.util.Date">
+            <column name="fecha_modificacion" />
+        </property> 
+    </class>
+</hibernate-mapping>

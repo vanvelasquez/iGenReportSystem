@@ -1,0 +1,71 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/components/" >
+<h:head>
+<title></title>
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">
+<ui:define name="windowTitle">
+	i-Gen - Usuarios
+</ui:define>
+<ui:define name="secciones">
+	<ui:include src="/sections/pacientes/secciones.xhtml" />
+</ui:define>
+<ui:define name="content">
+	<link rel="stylesheet" type="text/css" href="#{resource['css:pacientes.css']}" />
+	<div class="article"> 
+	  <h2>
+	  	<h:outputText value="Pacientes Encontrados"/>
+	  </h2>
+	  <h:form>
+		<h:panelGroup>
+		    <h:dataTable value="#{pacienteFound.pacientesEncontrados}" 
+				var="paciente"
+				styleClass="data-table"
+    			headerClass="data-table-header"
+    			rowClasses="data-table-odd-row,data-table-even-row"
+    			width="100%">
+				<h:column>
+    				<h:commandButton type="submit" action="#{pacienteList.prepareEdit(paciente)}" image="#{resource['images:pencil-16-ns.png']}" title="Modificar Paciente">
+    					<f:param id="pacienteId" value="#{paciente.pacienteId}"/>
+    				</h:commandButton>
+       			</h:column>
+       			
+				<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">N° HC</f:facet>
+    				<!-- row record -->
+    				#{paciente.numeroHC}
+    				
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Nombre</f:facet>
+    				#{paciente.nombre}
+    			</h:column>                   
+ 
+    			<h:column>
+    				<f:facet name="header">Obra Social</f:facet>
+    				#{paciente.obraSocial.nombre}
+    			</h:column>
+    			
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header"></f:facet>
+    				<!-- row record -->
+    				<h:commandButton action="#{pacienteDelete.borrar(paciente)}" image="#{resource['images:cross-16-ns.png']}" title="Eliminar Paciente">
+     				</h:commandButton>
+    				
+    			</h:column>
+
+			</h:dataTable>
+		</h:panelGroup>
+	</h:form>
+	</div>
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

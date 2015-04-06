@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.igenlatam.model.domain.Zona" table="ZONA">
+        <id name="zonaId" type="java.lang.Long">
+            <column name="zona_id" />
+            <generator class="increment" />
+        </id>
+        <property name="descripcionZona" type="java.lang.String">
+            <column name="descripcion_zona" />
+        </property>
+        <property name="pais" type="java.lang.String">
+            <column name="pais" />
+        </property>
+        <property name="provincia" type="java.lang.String">
+            <column name="provincia" />
+        </property>
+        <property name="partido" type="java.lang.String">
+            <column name="partido" />
+        </property>
+        <property name="barrio" type="java.lang.String">
+            <column name="barrio" />
+        </property>
+        <property name="usuarioCreacion" type="java.lang.String">
+            <column name="usuario_creacion" />
+        </property>      
+          <property name="usuarioModificacion" type="java.lang.String">
+            <column name="usuario_modificacion" />
+        </property>   
+          <property name="fechaCreacion" type="java.util.Date">
+            <column name="fecha_creacion" />
+        </property>      
+          <property name="fechaModificacion" type="java.util.Date">
+            <column name="fecha_modificacion" />
+        </property> 
+    </class>
+</hibernate-mapping>

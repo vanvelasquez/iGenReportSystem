@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.igenlatam.model.domain.Reporte" table="reporte">
+        <id name="reporteId" type="java.lang.Long">
+            <column name="reporte_id" />
+            <generator class="increment" />
+        </id>
+        <property name="localEncuestado" type="java.lang.String">
+            <column name="local_encuestado" />
+        </property>
+        <property name="fechaInicio" type="java.util.Date">
+            <column name="fecha_inicio" />
+        </property>
+        <property name="fechaFin" type="java.util.Date">
+            <column name="fecha_fin" />
+        </property>
+      
+        <many-to-one name="proyecto" class="com.igenlatam.model.domain.Proyecto" fetch="join" lazy="false" >
+            <column name="proyecto_id" />
+        </many-to-one>
+
+        <property name="usuarioCreacion" type="java.lang.String">
+            <column name="usuario_creacion" />
+        </property>      
+          <property name="usuarioModificacion" type="java.lang.String">
+            <column name="usuario_modificacion" />
+        </property>   
+          <property name="fechaCreacion" type="java.util.Date">
+            <column name="fecha_creacion" />
+        </property>      
+          <property name="fechaModificacion" type="java.util.Date">
+            <column name="fecha_modificacion" />
+        </property> 
+    </class>
+</hibernate-mapping>

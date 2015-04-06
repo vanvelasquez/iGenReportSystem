@@ -1,0 +1,48 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/components/" >
+<h:head>
+<title></title>
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">
+<ui:define name="windowTitle">
+	i-Gen - Usuarios
+<ui:define name="secciones">
+	<ui:include src="/sections/pacientes/secciones.xhtml" />
+</ui:define>
+<ui:define name="content">
+
+	<div class="article"> 
+	  <h2><h:outputText value="Búsqueda de Pacientes"/></h2>
+	            <p><h:outputText value="Para realizar la búsqueda de un paciente, debe ingresar el nombre completo del paciente, o su DNI o ambos."/></p>
+	<h:form >
+		<h:panelGroup id="busqueda">
+		
+		<h:panelGrid columns="3" width="100%">
+			<h:outputText id="labelNumeroHC" value="N° HC" />
+			<h:inputText id="inputNumeroHC" value="#{pacienteSearch.numeroHC}" />
+			<h:message for="inputNumeroHC"></h:message>
+			
+			<h:outputText id="labelDni" value="DNI" />
+			<h:inputText id="inputDni" value="#{pacienteSearch.dni}" />
+			<h:message for="inputDni" style="color:red"></h:message>
+			
+			<h:outputText id="labelNombre" value="Nombre" />
+			<h:inputText id="inputNombre" value="#{pacienteSearch.nombre}" />
+			<h:message for="inputNombre"></h:message>			
+			<h:outputText />
+			
+			<h:commandButton value="Buscar" action="#{pacienteSearch.pasarDatos(pacienteSearch.nombre, pacienteSearch.dni,pacienteSearch.numeroHC)}"></h:commandButton>
+			<h:outputText />
+		</h:panelGrid>
+		
+		</h:panelGroup>
+	</h:form>
+	</div>
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

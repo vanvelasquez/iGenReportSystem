@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/components/" >
+      <f:metadata>
+  		<f:viewParam name="pacienteId" value="#{pacienteEdit.pacienteId}"/>
+	</f:metadata>
+<h:head>
+<title></title>
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">
+<ui:define name="windowTitle">
+	i-Gen - Usuarios
+<ui:define name="secciones">
+	<ui:include src="/sections/pacientes/secciones.xhtml" />
+</ui:define>
+<ui:define name="content">
+
+	<div class="article"> 
+	  <h2>
+	  	<h:outputText value="Modificar Paciente"/>
+	  </h2>
+	<h:form >
+		<h:panelGroup>
+		#{pacienteEdit.pacienteId}
+			<h:panelGrid columns="3" width="100%">
+				<h:outputLabel value="(*) N° HC" />
+				<h:inputText id="inputHC" value="#{pacienteEdit.paciente.numeroHC}"  required="true" requiredMessage="Debe introducir el N° de HC"/>
+				<h:message for="inputHC" style="color:red"/>
+				<h:outputText id="labelNombre" value="(*) Nombre" />
+				<h:inputText id="inputNombre" value="#{pacienteEdit.paciente.nombre}" required="true" requiredMessage="Debe introducir el Nombre"/>
+				<h:message for="inputNombre" style="color:red"/>
+				<h:outputText id="labelDni" value="(*) DNI" />
+				<h:inputText id="inputDni" value="#{pacienteEdit.paciente.dni}" required="true" requiredMessage="Debe introducir el DNI"><f:validateLength minimum="7" maximum="8" /></h:inputText>
+				<h:message for="inputDni" style="color:red"/>
+				<h:outputText id="labelFechaNacimiento" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fecha de Nacimiento" />
+				<h:inputText id="inputFechaNacimiento" value="#{pacienteEdit.paciente.fechaNacimiento}"><f:convertDateTime dateStyle="default" /></h:inputText>
+				<h:message for="inputFechaNacimiento"/>
+				<h:outputText id="labelOS" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obra Social" />
+	 			<comp:selectOneObraSocial  value="#{pacienteEdit.paciente.obraSocial.obraSocialId}"></comp:selectOneObraSocial> 
+				<h:message for="inputOS"></h:message>
+				<h:outputText />
+				<h:commandButton value="Modificar" action="#{pacienteEdit.editar(pacienteEdit.paciente)}" ></h:commandButton>
+				<h:outputText />
+			</h:panelGrid>  
+		</h:panelGroup>
+	</h:form>
+	</div>
+	
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

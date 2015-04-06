@@ -1,0 +1,85 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/components/" >
+<h:head>
+<title></title>
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">
+
+    <ui:define name="metadata">
+	    <f:metadata>
+			<f:event listener="#{usuarioBean.listar}" type="preRenderView"></f:event>
+		</f:metadata>
+	</ui:define>
+
+<ui:define name="windowTitle">
+	i-Gen - Usuarios
+</ui:define>
+<ui:define name="secciones">
+	<ui:include src="/sections/usuarios/secciones.xhtml" />
+</ui:define>
+<ui:define name="content">
+	<link rel="stylesheet" type="text/css" href="#{resource['css:pacientes.css']}" />
+	<div class="article"> 
+	  <h2>
+	  	<h:outputText value="Sección Usuarios"/>
+	  </h2>
+	  <h:form>
+		<h:panelGroup>
+		    <h:dataTable value="#{usuarioBean.listadoDeUsuarios}" 
+				var="usuario"
+				styleClass="data-table"
+    			headerClass="data-table-header"
+    			rowClasses="data-table-odd-row,data-table-even-row"
+    			width="100%">
+				<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">
+    					<h:commandButton action="usuariosCreate.xhtml" image="#{resource['images:plus-16-ns.png']}" title="Agregar Usuario">
+    			
+    					</h:commandButton>
+    				</f:facet>
+	   				
+     				<h:commandButton type="submit" action="#{usuarioBean.prepareEdit(usuario)}" image="#{resource['images:pencil-16-ns.png']}" title="Modificar Usuario">
+    					<f:param id="usuarioId" value="#{usuario.usuarioId}"/>
+    				</h:commandButton>
+    				
+    			</h:column>
+				<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Usuario</f:facet>
+    				<!-- row record -->
+    				#{usuario.usuario}
+    				
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Nombre</f:facet>
+    				#{usuario.nombreUsuario}
+    			</h:column>                   
+ 
+    			<h:column>
+    				<f:facet name="header">Rol Usuario</f:facet>
+    				#{usuario.rolUsuario.descripcionRol}
+    			</h:column>
+    			
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header"></f:facet>
+    				<!-- row record -->
+    				<h:commandButton action="#{usuarioBean.borrar(usuario)}" image="#{resource['images:cross-16-ns.png']}" title="Eliminar Usuario">
+     				</h:commandButton>
+    				
+    			</h:column>
+
+			</h:dataTable>
+		</h:panelGroup>
+	</h:form>
+	</div>
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

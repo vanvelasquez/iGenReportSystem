@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.igenlatam.model.domain.Usuario" table="usuario">
+        <id name="usuarioId" type="java.lang.Long">
+            <column name="usuario_id" />
+            <generator class="increment" />
+        </id>
+        <property name="nombreUsuario" type="java.lang.String">
+            <column name="nombre_usuario" />
+        </property>
+        <property name="apellidoUsuario" type="java.lang.String">
+            <column name="apellido_usuario" />
+        </property>
+        <property name="direccionUsuario" type="java.lang.String">
+            <column name="direccion_usuario" />
+        </property>
+        <property name="telefonoUsuario" type="java.lang.String">
+            <column name="telefono_usuario" />
+        </property>
+        <property name="emailUsuario" type="java.lang.String">
+            <column name="email_usuario" />
+        </property>
+        <property name="usuario" type="java.lang.String">
+            <column name="usuario" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" />
+        </property>
+        
+        <many-to-one name="rolUsuario" class="com.igenlatam.model.domain.RolUsuario" fetch="join" lazy="false" >
+            <column name="rol_usuario_id" />
+        </many-to-one>
+        
+        <property name="usuarioCreacion" type="java.lang.String">
+            <column name="usuario_creacion" />
+        </property>      
+          <property name="usuarioModificacion" type="java.lang.String">
+            <column name="usuario_modificacion" />
+        </property>   
+          <property name="fechaCreacion" type="java.util.Date">
+            <column name="fecha_creacion" />
+        </property>      
+          <property name="fechaModificacion" type="java.util.Date">
+            <column name="fecha_modificacion" />
+        </property> 
+    </class>
+</hibernate-mapping>
